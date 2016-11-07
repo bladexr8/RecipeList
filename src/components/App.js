@@ -7,9 +7,9 @@ export default class App extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
-        store.dispatch(sampleAction('test'));
-    }
+    //componentWillMount() {
+    //    store.dispatch(sampleAction('test'));
+   // }
     
     render(){
         return (
