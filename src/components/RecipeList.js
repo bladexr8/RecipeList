@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { addRecipe } from '../actions/RecipeActions.js'
 import store from '../store/Store';
 
@@ -21,11 +22,14 @@ export default class RecipeList extends React.Component {
         this.setState({
             data: this.props.store.getState().recipes
         });
+        // clear the text box
+        ReactDOM.findDOMNode(this.refs.newRecipe).value = '';
     }
 
     addRecipe() {
         console.log('***Adding Recipe...');
-        store.dispatch(addRecipe("Test Recipe"));
+        // store.dispatch(addRecipe("Test Recipe"));
+        store.dispatch(addRecipe(ReactDOM.findDOMNode(this.refs.newRecipe).value));
     }
 
     render() {
@@ -36,6 +40,7 @@ export default class RecipeList extends React.Component {
         });
         return(<div>
                   <ul>{recipeItems}</ul>
+                  <input type="text" ref="newRecipe" placeholder="Recipe Name...." />
                   <button onClick={this.addRecipe.bind(this)}>Add</button>
                 </div>);
     }
