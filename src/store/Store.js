@@ -1,6 +1,7 @@
 // Redux Store to hold application state
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reducer from '../reducers/Reducer';
+import { logger } from '../mw/Logger';
 
 const initialState = {
     recipes: [
@@ -17,6 +18,21 @@ const initialState = {
     ]
 };
 
-const store = createStore(reducer, initialState);
+/*function logger({ getState }) {
+  return (next) => (action) => {
+    console.log('will dispatch', action)
+
+    // Call the next dispatch method in the middleware chain.
+    let returnValue = next(action)
+
+    console.log('state after dispatch', getState())
+
+    // This will likely be the action itself, unless
+    // a middleware further in chain changed it.
+    return returnValue
+  }
+}*/
+
+const store = createStore(reducer, initialState, applyMiddleware(logger));
 
 export default store;
