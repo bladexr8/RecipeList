@@ -1,4 +1,4 @@
-import { ADD_RECIPE } from '../constants/action-types';
+import { ADD_RECIPE, SET_RECIPES } from '../constants/action-types';
 
 const  recipesReducer = (recipes = [], action) => {
     console.info('*** Running Recipe Reducer');
@@ -14,6 +14,10 @@ const  recipesReducer = (recipes = [], action) => {
             console.log(newRecipeList);
             return newRecipeList; 
             //return recipes.concat({ name: action.name })
+
+        case SET_RECIPES:
+            console.log("***SET_RECIPES action handler...");
+            return action.data.recipes;
     }
 
     return recipes;

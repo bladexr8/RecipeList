@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { addRecipe } from '../actions/RecipeActions.js'
+import { addRecipe, setRecipes } from '../actions/RecipeActions.js'
 import store from '../store/Store';
 
 export default class RecipeList extends React.Component {

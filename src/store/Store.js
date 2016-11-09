@@ -2,6 +2,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import reducer from '../reducers/Reducer';
 import { logger } from '../mw/Logger';
+import { apiMiddleware } from '../mw/api';
 
 const initialState = {
     recipes: [
@@ -33,6 +34,7 @@ const initialState = {
   }
 }*/
 
-const store = createStore(reducer, initialState, applyMiddleware(logger));
+// const store = createStore(reducer, initialState, applyMiddleware(logger, apiMiddleware));
+const store = createStore(reducer, applyMiddleware(logger, apiMiddleware));
 
 export default store;
